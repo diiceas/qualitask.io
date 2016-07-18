@@ -20,8 +20,18 @@ var AppComponent = (function () {
             copySortSource: true,
         });
     }
-    AppComponent.prototype.addNewTodo = function (newTodo) {
-        this.many.push(newTodo);
+    AppComponent.prototype.addNewTodo = function (value) {
+        this.many.push(value);
+        this.newTodo = null;
+    };
+    AppComponent.prototype.eventHandler = function (event, newTodo) {
+        if (event.keyCode === 13) {
+            this.addNewTodo(newTodo);
+        }
+    };
+    AppComponent.prototype.todoItemOnClick = function (event) {
+        event.srcElement.style.textDecoration = "line-through";
+        event.srcElement.style.background = "orange";
     };
     AppComponent = __decorate([
         core_1.Component({

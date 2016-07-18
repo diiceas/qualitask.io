@@ -11,17 +11,30 @@ import {Dragula, DragulaService} from 'ng2-dragula/ng2-dragula';
 })
 export class AppComponent {
   newTodo: string;
-  
+
 
   constructor(private dragulaService: DragulaService) {
     dragulaService.setOptions('another-bag', {
       copy: true,
       copySortSource: true,             // elements in copy-source containers can be reordered
-    });    
+    });
   }
 
-  addNewTodo(newTodo: string){
-    this.many.push(newTodo);
+  addNewTodo(value: string) {
+    this.many.push(value);
+    this.newTodo = null;
+  }
+
+  eventHandler(event, newTodo) {
+    if (event.keyCode === 13) {
+      this.addNewTodo(newTodo);
+    }
+  }
+
+  todoItemOnClick(event)
+  {
+    event.srcElement.style.textDecoration = "line-through";
+    event.srcElement.style.background = "orange";
   }
 
   public many: Array<string> = [];
