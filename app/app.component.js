@@ -21,7 +21,7 @@ var AppComponent = (function () {
         });
     }
     AppComponent.prototype.addNewTodo = function (value) {
-        this.many.push(value);
+        this.many.push(this.urlify(value));
         this.newTodo = null;
     };
     AppComponent.prototype.eventHandler = function (event, newTodo) {
@@ -32,6 +32,26 @@ var AppComponent = (function () {
     AppComponent.prototype.todoItemOnClick = function (event) {
         event.srcElement.style.textDecoration = "line-through";
         event.srcElement.style.background = "orange";
+    };
+    AppComponent.prototype.urlify = function (text) {
+        var urlRegex = /(https?:\/\/[^\s]+)/g;
+        return text.replace(urlRegex, function (url) {
+            return '<a href="' + url + '">' + url + '</a>';
+        });
+    };
+    AppComponent.prototype.addLearningResources = function () {
+        this.many2.push(this.urlify("https://lingvist.io - 30 min"));
+        this.many2.push(this.urlify("rest - 10 mins"));
+        this.many2.push(this.urlify("https://duolingo.io - 20 min"));
+    };
+    AppComponent.prototype.addMeetingResources = function () {
+        this.many2.push(this.urlify("meeting facilitator #1 - 3 min"));
+        this.many2.push(this.urlify("developer #1 - 5 min - status"));
+        this.many2.push(this.urlify("developer #2 - 7 min - status"));
+        this.many2.push(this.urlify("QA #1 - 4 min"));
+        this.many2.push(this.urlify("product owner - 5 min"));
+        this.many2.push(this.urlify("client - 10 min"));
+        this.many2.push(this.urlify("summary - 5 min"));
     };
     AppComponent = __decorate([
         core_1.Component({

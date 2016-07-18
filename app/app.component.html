@@ -11,6 +11,8 @@
 <div>
     <input [(ngModel)]="newTodo" (keypress)="eventHandler($event, newTodo)">
     <button (click)="addNewTodo(newTodo)">Add</button>
+    <button (click)="addLearningResources()">Add learning resources</button>
+    <button (click)="addMeetingResources()">Add meeting resources</button>
 </div>
 <br/>
 <div>

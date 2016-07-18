@@ -21,7 +21,7 @@ export class AppComponent {
   }
 
   addNewTodo(value: string) {
-    this.many.push(value);
+    this.many.push(this.urlify(value));
     this.newTodo = null;
   }
 
@@ -31,10 +31,32 @@ export class AppComponent {
     }
   }
 
-  todoItemOnClick(event)
-  {
+  todoItemOnClick(event) {
     event.srcElement.style.textDecoration = "line-through";
     event.srcElement.style.background = "orange";
+  }
+
+  urlify(text) {
+    var urlRegex = /(https?:\/\/[^\s]+)/g;
+    return text.replace(urlRegex, function (url) {
+      return '<a href="' + url + '">' + url + '</a>';
+    })
+  }
+
+  addLearningResources(){
+    this.many2.push(this.urlify("https://lingvist.io - 30 min"));
+    this.many2.push(this.urlify("rest - 10 mins"));
+    this.many2.push(this.urlify("https://duolingo.io - 20 min"));
+  }
+
+  addMeetingResources(){
+    this.many2.push(this.urlify("meeting facilitator #1 - 3 min"));
+    this.many2.push(this.urlify("developer #1 - 5 min - status"));
+    this.many2.push(this.urlify("developer #2 - 7 min - status"));
+    this.many2.push(this.urlify("QA #1 - 4 min"));
+    this.many2.push(this.urlify("product owner - 5 min"));
+    this.many2.push(this.urlify("client - 10 min"));
+    this.many2.push(this.urlify("summary - 5 min"));
   }
 
   public many: Array<string> = [];
