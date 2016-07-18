@@ -1,0 +1,19 @@
+<h1>Quicktask.io - Stay focused</h1>
+<!--keep your focus-->
+
+<!-- The basic todo list template -->
+<div>   
+    <input [(ngModel)]="newTodo">
+    <button (click)="addNewTodo(newTodo)">Add</button>
+</div>
+
+<div>
+    <div class='wrapper'>
+        <div class='container' [dragula]='"another-bag"' [dragulaModel]='many'>
+        <div *ngFor='let text of many' [innerHtml]='text'></div>
+        </div>
+        <div class='container' [dragula]='"another-bag"' [dragulaModel]='many2'>
+        <div *ngFor='let text of many2' [innerHtml]='text'></div>
+        </div>
+    </div>
+</div>
