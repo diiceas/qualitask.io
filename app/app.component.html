@@ -9,7 +9,7 @@
 </h5>
 <!-- The basic todo list template -->
 <div>
-    <input [(ngModel)]="newTodo" (keypress)="eventHandler($event, newTodo)">
+    <input [(ngModel)]="newTodo" (keypress)="keyPressEventHandler($event, newTodo)">
     <button (click)="addNewTodo(newTodo)">Add</button>
     <button (click)="addLearningResources()">Add learning resources</button>
     <button (click)="addMeetingResources()">Add meeting resources</button>

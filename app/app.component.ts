@@ -25,7 +25,7 @@ export class AppComponent {
     this.newTodo = null;
   }
 
-  eventHandler(event, newTodo) {
+  keyPressEventHandler(event, newTodo) {
     if (event.keyCode === 13) {
       this.addNewTodo(newTodo);
     }
