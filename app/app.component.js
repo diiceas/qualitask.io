@@ -59,13 +59,34 @@ var AppComponent = (function () {
         });
     };
     AppComponent.prototype.addMeetingResources = function () {
-        this.many2.push(this.urlify("meeting facilitator #1 - 3 min"));
-        this.many2.push(this.urlify("developer #1 - 5 min - status"));
-        this.many2.push(this.urlify("developer #2 - 7 min - status"));
-        this.many2.push(this.urlify("QA #1 - 4 min"));
-        this.many2.push(this.urlify("product owner - 5 min"));
-        this.many2.push(this.urlify("client - 10 min"));
-        this.many2.push(this.urlify("summary - 5 min"));
+        this.many2.push({
+            innerText: this.urlify("meeting facilitator #1 - 3 min"),
+            progressBarValue: 0
+        });
+        this.many2.push({
+            innerText: this.urlify("developer #1 - 5 min - status"),
+            progressBarValue: 0
+        });
+        this.many2.push({
+            innerText: this.urlify("developer #2 - 7 min - status"),
+            progressBarValue: 0
+        });
+        this.many2.push({
+            innerText: this.urlify("QA #1 - 4 min"),
+            progressBarValue: 0
+        });
+        this.many2.push({
+            innerText: this.urlify("product owner - 5 min"),
+            progressBarValue: 0
+        });
+        this.many2.push({
+            innerText: this.urlify("client - 10 min"),
+            progressBarValue: 0
+        });
+        this.many2.push({
+            innerText: this.urlify("summary - 5 min"),
+            progressBarValue: 0
+        });
     };
     AppComponent = __decorate([
         core_1.Component({

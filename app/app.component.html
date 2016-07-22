@@ -21,7 +21,6 @@
             <div *ngFor='let taskItem of many' [innerHtml]='taskItem.innerText'></div>            
         </div>
         <div class='container' [dragula]='"another-bag"' [dragulaModel]='many2'>
-            <!--<div *ngFor='let text of many2' [innerHtml]='text' (click)="todoItemOnClick($event)"></div>-->
             <div *ngFor='let taskItem of many2'>
                 <div [innerHtml]='taskItem.innerText' (click)="todoItemOnClick($event, taskItem)"></div>
                 <md-progress-bar mode="determinate" value="{{taskItem.progressBarValue}}"></md-progress-bar>
