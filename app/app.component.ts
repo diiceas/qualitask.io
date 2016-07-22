@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 
-import {Dragula, DragulaService} from 'ng2-dragula/ng2-dragula';
-import {MdProgressBar} from '@angular2-material/progress-bar';
-
+import { Dragula, DragulaService } from 'ng2-dragula/ng2-dragula';
+import { MdProgressBar } from '@angular2-material/progress-bar';
+import { TaskItem } from './taskItem';
 
 @Component({
   selector: 'my-app',
@@ -14,7 +14,6 @@ import {MdProgressBar} from '@angular2-material/progress-bar';
 export class AppComponent {
   newTodo: string;
 
-
   constructor(private dragulaService: DragulaService) {
     dragulaService.setOptions('another-bag', {
       copy: true,
@@ -23,7 +22,10 @@ export class AppComponent {
   }
 
   addNewTodo(value: string) {
-    this.many.push(this.urlify(value));
+    this.many.push({
+      innerText: this.urlify(value),
+      progressBarValue: 0
+    });
     this.newTodo = null;
   }
 
@@ -33,9 +35,10 @@ export class AppComponent {
     }
   }
 
-  todoItemOnClick(event) {
+  todoItemOnClick(event, taskItem: TaskItem) {
     event.srcElement.style.textDecoration = "line-through";
     event.srcElement.style.background = "orange";
+    taskItem.progressBarValue = 100;
   }
 
   urlify(text) {
@@ -45,13 +48,22 @@ export class AppComponent {
     })
   }
 
-  addLearningResources(){
-    this.many2.push(this.urlify("https://lingvist.io - 30 min"));
-    this.many2.push(this.urlify("rest - 10 mins"));
-    this.many2.push(this.urlify("https://duolingo.io - 20 min"));
+  addLearningResources() {
+    this.many2.push({ 
+      innerText: this.urlify("https://lingvist.io - 30 min"), 
+      progressBarValue: 0 
+    });
+    this.many2.push({ 
+      innerText: this.urlify("rest - 10 mins"), 
+      progressBarValue: 0 
+    });
+    this.many2.push({ 
+      innerText: this.urlify("https://duolingo.com - 30 min"), 
+      progressBarValue: 0 
+    });
   }
 
-  addMeetingResources(){
+  addMeetingResources() {
     this.many2.push(this.urlify("meeting facilitator #1 - 3 min"));
     this.many2.push(this.urlify("developer #1 - 5 min - status"));
     this.many2.push(this.urlify("developer #2 - 7 min - status"));
@@ -61,6 +73,6 @@ export class AppComponent {
     this.many2.push(this.urlify("summary - 5 min"));
   }
 
-  public many: Array<string> = [];
-  public many2: Array<string> = [];
+  public many: Array<TaskItem> = [];
+  public many2: Array<TaskItem> = [];
 }

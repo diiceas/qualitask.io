@@ -22,7 +22,10 @@ var AppComponent = (function () {
         });
     }
     AppComponent.prototype.addNewTodo = function (value) {
-        this.many.push(this.urlify(value));
+        this.many.push({
+            innerText: this.urlify(value),
+            progressBarValue: 0
+        });
         this.newTodo = null;
     };
     AppComponent.prototype.keyPressEventHandler = function (event, newTodo) {
@@ -30,9 +33,10 @@ var AppComponent = (function () {
             this.addNewTodo(newTodo);
         }
     };
-    AppComponent.prototype.todoItemOnClick = function (event) {
+    AppComponent.prototype.todoItemOnClick = function (event, taskItem) {
         event.srcElement.style.textDecoration = "line-through";
         event.srcElement.style.background = "orange";
+        taskItem.progressBarValue = 100;
     };
     AppComponent.prototype.urlify = function (text) {
         var urlRegex = /(https?:\/\/[^\s]+)/g;
@@ -41,9 +45,18 @@ var AppComponent = (function () {
         });
     };
     AppComponent.prototype.addLearningResources = function () {
-        this.many2.push(this.urlify("https://lingvist.io - 30 min"));
-        this.many2.push(this.urlify("rest - 10 mins"));
-        this.many2.push(this.urlify("https://duolingo.io - 20 min"));
+        this.many2.push({
+            innerText: this.urlify("https://lingvist.io - 30 min"),
+            progressBarValue: 0
+        });
+        this.many2.push({
+            innerText: this.urlify("rest - 10 mins"),
+            progressBarValue: 0
+        });
+        this.many2.push({
+            innerText: this.urlify("https://duolingo.com - 30 min"),
+            progressBarValue: 0
+        });
     };
     AppComponent.prototype.addMeetingResources = function () {
         this.many2.push(this.urlify("meeting facilitator #1 - 3 min"));
