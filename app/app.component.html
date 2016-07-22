@@ -8,6 +8,8 @@
     </ul>
 </h5>
 <!-- The basic todo list template -->
+<md-progress-bar mode="indeterminate"></md-progress-bar>
+
 <div>
     <input [(ngModel)]="newTodo" (keypress)="keyPressEventHandler($event, newTodo)">
     <button (click)="addNewTodo(newTodo)">Add</button>

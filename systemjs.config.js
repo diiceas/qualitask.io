@@ -11,6 +11,7 @@
     'rxjs':                       'node_modules/rxjs',
     'dragula':                    'node_modules/dragula/dist/dragula.js',
     'ng2-dragula':                'node_modules/ng2-dragula',
+    '@angular2-material':         'node_modules/@angular2-material',
   };
   // packages tells the System loader how to load when no filename and/or no extension
   var packages = {
@@ -39,6 +40,19 @@
   function packUmd(pkgName) {
     packages['@angular/'+pkgName] = { main: '/bundles/' + pkgName + '.umd.js', defaultExtension: 'js' };
   }
+
+  // Angular Material 2 Packages to load.
+  var _materialPackages = [
+    'core', 
+    'progress-bar'
+  ];
+
+  _materialPackages.forEach(function (item) {
+    // All Material 2 components are prefixed with  @angular2-material and use
+    // the components name as entry point.
+    packages['@angular2-material/' + item] = { main: item };
+  });
+
   // Most environments should use UMD; some (Karma) need the individual index files
   var setPackageConfig = System.packageWithIndex ? packIndex : packUmd;
   // Add package entries for angular packages

@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 
 import {Dragula, DragulaService} from 'ng2-dragula/ng2-dragula';
+import {MdProgressBar} from '@angular2-material/progress-bar';
+
 
 @Component({
   selector: 'my-app',
   templateUrl: 'app/app.component.html',
-  directives: [Dragula],
+  directives: [Dragula, MdProgressBar],
   viewProviders: [DragulaService],
   styleUrls: ['app/app.component.css'],
 })
