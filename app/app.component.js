@@ -42,9 +42,10 @@ var AppComponent = (function () {
             return '<a href="' + url + '">' + url + '</a>';
         });
     };
-    AppComponent.prototype.startProgressBar = function (taskItem) {
+    AppComponent.prototype.startTaskItem = function (taskItem) {
         var _this = this;
         if (taskItem.timer == undefined) {
+            this.stopOtherTaskItems(); //allow only one running task at a time
             taskItem.timer = setInterval(function () {
                 ++taskItem.lastTick;
                 taskItem.progressBarValue = taskItem.lastTick / taskItem.taskLengthSeconds * 100;
@@ -55,13 +56,19 @@ var AppComponent = (function () {
             }, 1000);
         }
     };
-    AppComponent.prototype.stopProgressBar = function (taskItem) {
+    AppComponent.prototype.stopTaskItem = function (taskItem) {
         if (taskItem.timer != undefined) {
             clearInterval(taskItem.timer);
             console.log("timer for " + taskItem.innerText + " has been deactivated..");
             setTimeout(null, 3000); //handle the case when user constantly and quickly pushes the stop button
             taskItem.timer = undefined;
         }
+    };
+    AppComponent.prototype.stopOtherTaskItems = function () {
+        var _this = this;
+        this.many2.forEach(function (element) {
+            _this.stopTaskItem(element);
+        });
     };
     AppComponent.prototype.getCurrentSecondStr = function (taskItem) {
         return taskItem.currentTimeStr = new Date(taskItem.lastTick * 1000).toISOString().substr(11, 8);

@@ -24,8 +24,8 @@
             <div *ngFor='let taskItem of many2'>
                 <div [innerHtml]='taskItem.innerText' (click)="todoItemOnClick($event, taskItem)"></div>
                 <md-progress-bar mode="determinate" value="{{taskItem.progressBarValue}}"></md-progress-bar>
-                <button (click)="startProgressBar(taskItem)">Start</button>
-                <button (click)="stopProgressBar(taskItem)">Stop</button>                
+                <button (click)="startTaskItem(taskItem)">Start</button>
+                <button (click)="stopTaskItem(taskItem)">Stop</button>                
                 <span>{{getCurrentSecondStr(taskItem)}}</span>
             </div>
         </div>

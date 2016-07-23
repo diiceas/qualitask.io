@@ -47,8 +47,11 @@ export class AppComponent {
     })
   }
 
-  startProgressBar(taskItem: TaskItem) {
+  startTaskItem(taskItem: TaskItem) {
     if (taskItem.timer == undefined) { //prevent two intervals running at the same time
+      
+      this.stopOtherTaskItems(); //allow only one running task at a time
+
       taskItem.timer = setInterval(() => {
         ++taskItem.lastTick;
         taskItem.progressBarValue = taskItem.lastTick / taskItem.taskLengthSeconds * 100;
@@ -60,13 +63,19 @@ export class AppComponent {
     }
   }
 
-  stopProgressBar(taskItem: TaskItem) {
+  stopTaskItem(taskItem: TaskItem) {
     if (taskItem.timer != undefined) {
       clearInterval(taskItem.timer);
       console.log("timer for " + taskItem.innerText + " has been deactivated..");
       setTimeout(null, 3000); //handle the case when user constantly and quickly pushes the stop button
       taskItem.timer = undefined;
     }
+  }
+
+  stopOtherTaskItems(){
+    this.many2.forEach(element => {
+      this.stopTaskItem(element);
+    });
   }
 
   getCurrentSecondStr(taskItem: TaskItem) {
