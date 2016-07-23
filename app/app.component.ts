@@ -1,14 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Dragula, DragulaService } from 'ng2-dragula/ng2-dragula';
-import { MdProgressBar } from '@angular2-material/progress-bar';
+import { MD_PROGRESS_BAR_DIRECTIVES } from '@angular2-material/progress-bar';
+import { MD_BUTTON_DIRECTIVES } from '@angular2-material/button';
+import { MD_INPUT_DIRECTIVES } from '@angular2-material/input'
 import { TaskItem } from './taskItem';
 import { Observable } from 'rxjs/Rx';
 
 @Component({
   selector: 'my-app',
   templateUrl: 'app/app.component.html',
-  directives: [Dragula, MdProgressBar],
+  directives: [
+    Dragula,
+    MD_PROGRESS_BAR_DIRECTIVES,
+    MD_BUTTON_DIRECTIVES,
+    MD_INPUT_DIRECTIVES
+  ],
   viewProviders: [DragulaService],
   styleUrls: ['app/app.component.css'],
 })

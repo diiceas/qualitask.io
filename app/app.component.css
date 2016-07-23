@@ -7,6 +7,7 @@
     /*background-color: rgba(255, 255, 255, 0.1);*/
     /*border: 1px solid rgba(0, 0, 0, 0.2);*/
     width: 50%;
+    padding: 0px;
 }
 .grey {
     /*background-color: rgba(0, 0, 0, 0.1);*/
@@ -26,6 +27,7 @@
     cursor: grab;
     cursor: -moz-grab;
     cursor: -webkit-grab;
+    padding: 5px;
 }
 .gu-mirror {
     cursor: grabbing;
@@ -46,7 +48,7 @@
     width: 140px;
 }
 .summary .widget > div {
-    width: 80%;
+    width: 85%;
     text-align: center;
     padding: 3px;
 }
@@ -56,4 +58,10 @@
 .overdueHighlighted{
     background-color: #336699;
     color: white;    
+}
+
+md-input{
+    float: left;
+    margin-right: 12px;
+    margin-top: -3px;
 }

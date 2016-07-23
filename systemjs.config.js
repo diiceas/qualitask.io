@@ -44,7 +44,10 @@
   // Angular Material 2 Packages to load.
   var _materialPackages = [
     'core', 
-    'progress-bar'
+    'progress-bar',
+    'button',
+    'checkbox',
+    'input'
   ];
 
   _materialPackages.forEach(function (item) {

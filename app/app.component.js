@@ -11,6 +11,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var ng2_dragula_1 = require('ng2-dragula/ng2-dragula');
 var progress_bar_1 = require('@angular2-material/progress-bar');
+var button_1 = require('@angular2-material/button');
+var input_1 = require('@angular2-material/input');
 var taskItem_1 = require('./taskItem');
 var AppComponent = (function () {
     function AppComponent(dragulaService) {
@@ -126,7 +128,12 @@ var AppComponent = (function () {
         core_1.Component({
             selector: 'my-app',
             templateUrl: 'app/app.component.html',
-            directives: [ng2_dragula_1.Dragula, progress_bar_1.MdProgressBar],
+            directives: [
+                ng2_dragula_1.Dragula,
+                progress_bar_1.MD_PROGRESS_BAR_DIRECTIVES,
+                button_1.MD_BUTTON_DIRECTIVES,
+                input_1.MD_INPUT_DIRECTIVES
+            ],
             viewProviders: [ng2_dragula_1.DragulaService],
             styleUrls: ['app/app.component.css'],
         }), 

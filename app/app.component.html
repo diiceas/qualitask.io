@@ -1,48 +1,48 @@
-<h1>qualitask.io</h1>
-<h4>Self-management made easy!</h4>
-<h5>
-    <ul>
-        <li>Work smart</li>
-        <li>Stay focused
-            <!--keep your focus-->
-        </li>
-        <li>Share your progress (if needed)</li>
-    </ul>
-</h5>
-<!-- The basic todo list template -->
 <div>
-    <input [(ngModel)]="newTodo" (keypress)="keyPressEventHandler($event, newTodo)">
-    <button (click)="addNewTodo(newTodo)">Add</button>
-    <button (click)="addLearningResources()">Add learning resources</button>
-    <button (click)="addMeetingResources()">Add meeting resources</button>
-</div>
-<br/>
-<div>
-    <div class='wrapper'>
-        <div class='container' [dragula]='"another-bag"' [dragulaModel]='many'>
-            <div *ngFor='let taskItem of many' [innerHtml]='taskItem.innerText'></div>
+    <div style="margin:auto;width:1200px;">
+        <h1>quicktask.io</h1>
+        <h4>Self-management made easy!</h4>
+        <ul>
+            <li>Work smart</li>
+            <li>Stay focused
+                <!--keep your focus-->
+            </li>
+            <li>Share your progress (if needed)</li>
+        </ul>
+
+        <!-- The basic todo list template -->
+        <div>
+            <md-input placeholder="Task name" [(ngModel)]="newTodo" (keypress)="keyPressEventHandler($event, newTodo)"></md-input>
+            <button md-raised-button (click)="addNewTodo(newTodo)">Add</button>
+            <button md-raised-button (click)="addLearningResources()">Add learning resources</button>
+            <button md-raised-button (click)="addMeetingResources()">Add meeting resources</button>
         </div>
-        <div class='container grey' [dragula]='"another-bag"' [dragulaModel]='many2' [class.hidden]="many.length == 0 && many2.length == 0">
-            <div *ngFor='let taskItem of many2'>
-                <div [innerHtml]='taskItem.innerText' (click)="todoItemOnClick($event, taskItem)"></div>                
-                <md-progress-bar color="primary" mode="determinate" value="{{taskItem.progressBarValue}}"></md-progress-bar>                
-                <button (click)="startTaskItem(taskItem)">Start</button>
-                <button (click)="stopTaskItem(taskItem)">Stop</button>
-                <span>{{getCurrentSecondStr(taskItem)}}</span>
-            </div>
-        </div>
-        <div class="summary" [class.hidden]="many2.length === 0">
-            <div class="container widget grey">
-                <div>Spent: {{ getFormattedTimeBySeconds(getTotalSpentTime())}}</div>                
-                <div>Total: {{ getFormattedTimeBySeconds(getTotalTime())}}</div>
-                <!--<div>Overdue: {{ getFormattedTimeBySeconds(getTotalOverdueTime())}}</div>-->
-                <div [class.hidden]="getTotalOverdueTimePercent() == 0" [class.overdueHighlighted]="getTotalOverdueTimePercent() >= 20">
-                    Overdue: 
-                    <span>
-                        {{ (getTotalOverdueTimePercent()).toFixed(1)}}
-                    </span>
+        <br/>
+        <div>
+            <div class='wrapper'>
+                <div class='container' [dragula]='"another-bag"' [dragulaModel]='many'>
+                    <div *ngFor='let taskItem of many' [innerHtml]='taskItem.innerText'></div>
+                </div>
+                <div class='container grey' [dragula]='"another-bag"' [dragulaModel]='many2' [class.hidden]="many.length == 0 && many2.length == 0">
+                    <div *ngFor='let taskItem of many2'>
+                        <div [innerHtml]='taskItem.innerText' (click)="todoItemOnClick($event, taskItem)"></div>
+                        <md-progress-bar color="primary" mode="determinate" value="{{taskItem.progressBarValue}}"></md-progress-bar>
+                        <button md-raised-button (click)="startTaskItem(taskItem)">Start</button>
+                        <button md-raised-button (click)="stopTaskItem(taskItem)">Stop</button>
+                        <span>{{getCurrentSecondStr(taskItem)}}</span>
+                    </div>
+                </div>
+                <div class="summary" [class.hidden]="many2.length === 0">
+                    <div class="container widget grey">
+                        <div>Spent: {{ getFormattedTimeBySeconds(getTotalSpentTime())}}</div>
+                        <div>Total: {{ getFormattedTimeBySeconds(getTotalTime())}}</div>
+                        <!--<div>Overdue: {{ getFormattedTimeBySeconds(getTotalOverdueTime())}}</div>-->
+                        <div [class.hidden]="getTotalOverdueTimePercent() == 0" [class.overdueHighlighted]="getTotalOverdueTimePercent() >= 20">
+                            Overdue: {{ (getTotalOverdueTimePercent()).toFixed(1)}}%
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+<div>
