@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var ng2_dragula_1 = require('ng2-dragula/ng2-dragula');
 var progress_bar_1 = require('@angular2-material/progress-bar');
+var taskItem_1 = require('./taskItem');
 var AppComponent = (function () {
     function AppComponent(dragulaService) {
         this.dragulaService = dragulaService;
@@ -22,10 +23,7 @@ var AppComponent = (function () {
         });
     }
     AppComponent.prototype.addNewTodo = function (value) {
-        this.many.push({
-            innerText: this.urlify(value),
-            progressBarValue: 0
-        });
+        this.many.push(new taskItem_1.TaskItem(this.urlify(value), 1));
         this.newTodo = null;
     };
     AppComponent.prototype.keyPressEventHandler = function (event, newTodo) {
@@ -44,49 +42,49 @@ var AppComponent = (function () {
             return '<a href="' + url + '">' + url + '</a>';
         });
     };
+    AppComponent.prototype.startProgressBar = function (taskItem) {
+        var _this = this;
+        if (taskItem.timer == undefined) {
+            taskItem.timer = setInterval(function () {
+                ++taskItem.lastTick;
+                taskItem.progressBarValue = taskItem.lastTick / taskItem.taskLengthSeconds * 100;
+                console.log("timer for " + taskItem.innerText + ": " + taskItem.lastTick);
+                if (taskItem.progressBarValue === 100) {
+                    _this.audio.play();
+                }
+            }, 1000);
+        }
+    };
+    AppComponent.prototype.stopProgressBar = function (taskItem) {
+        if (taskItem.timer != undefined) {
+            clearInterval(taskItem.timer);
+            console.log("timer for " + taskItem.innerText + " has been deactivated..");
+            setTimeout(null, 3000); //handle the case when user constantly and quickly pushes the stop button
+            taskItem.timer = undefined;
+        }
+    };
+    AppComponent.prototype.getCurrentSecondStr = function (taskItem) {
+        return taskItem.currentTimeStr = new Date(taskItem.lastTick * 1000).toISOString().substr(11, 8);
+    };
+    AppComponent.prototype.ngOnInit = function () {
+        this.audio = new Audio();
+        this.audio.src = "http://localhost:3000/assets/finish.mp3"; //replace with relative path later
+        this.audio.load();
+        console.log("this.audio element has been initialized");
+    };
     AppComponent.prototype.addLearningResources = function () {
-        this.many2.push({
-            innerText: this.urlify("https://lingvist.io - 30 min"),
-            progressBarValue: 0
-        });
-        this.many2.push({
-            innerText: this.urlify("rest - 10 mins"),
-            progressBarValue: 0
-        });
-        this.many2.push({
-            innerText: this.urlify("https://duolingo.com - 30 min"),
-            progressBarValue: 0
-        });
+        this.many2.push(new taskItem_1.TaskItem(this.urlify("https://lingvist.io - 3 min"), 3));
+        this.many2.push(new taskItem_1.TaskItem(this.urlify("rest - 1 mins"), 1));
+        this.many2.push(new taskItem_1.TaskItem(this.urlify("https://duolingo.com - 2 min"), 2));
     };
     AppComponent.prototype.addMeetingResources = function () {
-        this.many2.push({
-            innerText: this.urlify("meeting facilitator #1 - 3 min"),
-            progressBarValue: 0
-        });
-        this.many2.push({
-            innerText: this.urlify("developer #1 - 5 min - status"),
-            progressBarValue: 0
-        });
-        this.many2.push({
-            innerText: this.urlify("developer #2 - 7 min - status"),
-            progressBarValue: 0
-        });
-        this.many2.push({
-            innerText: this.urlify("QA #1 - 4 min"),
-            progressBarValue: 0
-        });
-        this.many2.push({
-            innerText: this.urlify("product owner - 5 min"),
-            progressBarValue: 0
-        });
-        this.many2.push({
-            innerText: this.urlify("client - 10 min"),
-            progressBarValue: 0
-        });
-        this.many2.push({
-            innerText: this.urlify("summary - 5 min"),
-            progressBarValue: 0
-        });
+        this.many2.push(new taskItem_1.TaskItem(this.urlify("meeting facilitator #1 - 3 min"), 3));
+        this.many2.push(new taskItem_1.TaskItem(this.urlify("developer #1 - status - 1 min "), 1));
+        this.many2.push(new taskItem_1.TaskItem(this.urlify("developer #2 - status - 1 min"), 1));
+        this.many2.push(new taskItem_1.TaskItem(this.urlify("QA #1 - 1 min"), 1));
+        this.many2.push(new taskItem_1.TaskItem(this.urlify("product owner - 1 min"), 1));
+        this.many2.push(new taskItem_1.TaskItem(this.urlify("client - 1 min"), 1));
+        this.many2.push(new taskItem_1.TaskItem(this.urlify("summary - 1 min"), 1));
     };
     AppComponent = __decorate([
         core_1.Component({
