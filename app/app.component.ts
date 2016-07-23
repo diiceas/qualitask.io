@@ -36,7 +36,7 @@ export class AppComponent {
 
   todoItemOnClick(event, taskItem: TaskItem) {
     event.srcElement.style.textDecoration = "line-through";
-    event.srcElement.style.background = "orange";
+    event.srcElement.style.background = "#E1E1E1";
     taskItem.progressBarValue = 100;
   }
 
@@ -49,7 +49,7 @@ export class AppComponent {
 
   startTaskItem(taskItem: TaskItem) {
     if (taskItem.timer == undefined) { //prevent two intervals running at the same time
-      
+
       this.stopOtherTaskItems(); //allow only one running task at a time
 
       taskItem.timer = setInterval(() => {
@@ -72,14 +72,18 @@ export class AppComponent {
     }
   }
 
-  stopOtherTaskItems(){
+  stopOtherTaskItems() {
     this.many2.forEach(element => {
       this.stopTaskItem(element);
     });
   }
 
+  getFormattedTimeBySeconds(seconds: number) {
+    return new Date(seconds * 1000).toISOString().substr(11, 8);
+  }
+
   getCurrentSecondStr(taskItem: TaskItem) {
-    return taskItem.currentTimeStr = new Date(taskItem.lastTick * 1000).toISOString().substr(11, 8);
+    return taskItem.currentTimeStr = this.getFormattedTimeBySeconds(taskItem.lastTick);
   }
 
   ngOnInit() {
@@ -93,6 +97,7 @@ export class AppComponent {
     this.many2.push(new TaskItem(this.urlify("https://lingvist.io - 3 min"), 3));
     this.many2.push(new TaskItem(this.urlify("rest - 1 mins"), 1));
     this.many2.push(new TaskItem(this.urlify("https://duolingo.com - 2 min"), 2));
+    this.many2.push(new TaskItem(this.urlify("test - 0.2 min"), 0.2)); //delete later
   }
 
   addMeetingResources() {
@@ -107,4 +112,34 @@ export class AppComponent {
 
   public many: Array<TaskItem> = [];
   public many2: Array<TaskItem> = [];
+
+  getTotalTime() {
+    let totalTaskLength = 0;
+    this.many2.forEach((item) => { totalTaskLength += item.taskLengthSeconds });
+    return totalTaskLength;
+  }
+
+  getTotalSpentTime() {
+    let totalValue = 0;
+    this.many2.forEach((item) => { totalValue += item.lastTick });
+    return totalValue;
+  }
+
+  getTotalOverdueTime() {
+    let totalValue = 0;
+    this.many2.forEach((item) => {
+      if (item.lastTick > item.taskLengthSeconds) {
+        totalValue += (item.lastTick - item.taskLengthSeconds);
+      }
+    });
+    return totalValue;
+  }
+
+  getTotalOverdueTimePercent() {
+    if (this.getTotalSpentTime() > 0 && this.getTotalOverdueTime() > 0) {
+      return this.getTotalOverdueTime() / this.getTotalSpentTime() * 100;
+    }
+
+    return 0;
+  }
 }

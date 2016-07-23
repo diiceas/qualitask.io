@@ -3,7 +3,9 @@
 <h5>
     <ul>
         <li>Work smart</li>
-        <li>Stay focused  <!--keep your focus--></li>
+        <li>Stay focused
+            <!--keep your focus-->
+        </li>
         <li>Share your progress (if needed)</li>
     </ul>
 </h5>
@@ -18,15 +20,28 @@
 <div>
     <div class='wrapper'>
         <div class='container' [dragula]='"another-bag"' [dragulaModel]='many'>
-            <div *ngFor='let taskItem of many' [innerHtml]='taskItem.innerText'></div>            
+            <div *ngFor='let taskItem of many' [innerHtml]='taskItem.innerText'></div>
         </div>
-        <div class='container' [dragula]='"another-bag"' [dragulaModel]='many2'>
+        <div class='container grey' [dragula]='"another-bag"' [dragulaModel]='many2' [class.hidden]="many.length == 0 && many2.length == 0">
             <div *ngFor='let taskItem of many2'>
-                <div [innerHtml]='taskItem.innerText' (click)="todoItemOnClick($event, taskItem)"></div>
-                <md-progress-bar mode="determinate" value="{{taskItem.progressBarValue}}"></md-progress-bar>
+                <div [innerHtml]='taskItem.innerText' (click)="todoItemOnClick($event, taskItem)"></div>                
+                <md-progress-bar color="primary" mode="determinate" value="{{taskItem.progressBarValue}}"></md-progress-bar>                
                 <button (click)="startTaskItem(taskItem)">Start</button>
-                <button (click)="stopTaskItem(taskItem)">Stop</button>                
+                <button (click)="stopTaskItem(taskItem)">Stop</button>
                 <span>{{getCurrentSecondStr(taskItem)}}</span>
+            </div>
+        </div>
+        <div class="summary" [class.hidden]="many2.length === 0">
+            <div class="container widget grey">
+                <div>Spent: {{ getFormattedTimeBySeconds(getTotalSpentTime())}}</div>                
+                <div>Total: {{ getFormattedTimeBySeconds(getTotalTime())}}</div>
+                <!--<div>Overdue: {{ getFormattedTimeBySeconds(getTotalOverdueTime())}}</div>-->
+                <div [class.hidden]="getTotalOverdueTimePercent() == 0" [class.overdueHighlighted]="getTotalOverdueTimePercent() >= 20">
+                    Overdue: 
+                    <span>
+                        {{ (getTotalOverdueTimePercent()).toFixed(1)}}
+                    </span>
+                </div>
             </div>
         </div>
     </div>
