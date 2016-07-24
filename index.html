@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">    
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> <!--replace later with npm bootstrap-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">    
+    <!--bootstrap-->
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">    
     <!-- dragula css -->
-    <link rel="stylesheet" href="node_modules/dragula/dist/dragula.css">
+    <link rel="stylesheet" href="node_modules/dragula/dist/dragula.css">    
     <!-- 1. Load libraries -->
      <!-- Polyfill(s) for older browsers -->
     <script src="node_modules/core-js/client/shim.min.js"></script>
@@ -16,6 +17,9 @@
     <script src="node_modules/systemjs/dist/system.src.js"></script>
     <!-- 2. Configure SystemJS -->
     <script src="systemjs.config.js"></script>
+    
+     <!--ng-bootstrap-->
+    <script src="node_modules/ng2-bootstrap/bundles/ng2-bootstrap.min.js"></script>
     <script>
       System.import('app').catch(function(err){ console.error(err); });
     </script>

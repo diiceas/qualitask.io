@@ -6,6 +6,7 @@ import { MD_BUTTON_DIRECTIVES } from '@angular2-material/button';
 import { MD_INPUT_DIRECTIVES } from '@angular2-material/input'
 import { TaskItem } from './taskItem';
 import { Observable } from 'rxjs/Rx';
+import { AlertComponent } from 'ng2-bootstrap';
 
 @Component({
   selector: 'my-app',
@@ -14,7 +15,8 @@ import { Observable } from 'rxjs/Rx';
     Dragula,
     MD_PROGRESS_BAR_DIRECTIVES,
     MD_BUTTON_DIRECTIVES,
-    MD_INPUT_DIRECTIVES
+    MD_INPUT_DIRECTIVES,
+    AlertComponent
   ],
   viewProviders: [DragulaService],
   styleUrls: ['app/app.component.css'],

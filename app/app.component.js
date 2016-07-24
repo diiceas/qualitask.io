@@ -14,6 +14,7 @@ var progress_bar_1 = require('@angular2-material/progress-bar');
 var button_1 = require('@angular2-material/button');
 var input_1 = require('@angular2-material/input');
 var taskItem_1 = require('./taskItem');
+var ng2_bootstrap_1 = require('ng2-bootstrap');
 var AppComponent = (function () {
     function AppComponent(dragulaService) {
         this.dragulaService = dragulaService;
@@ -132,7 +133,8 @@ var AppComponent = (function () {
                 ng2_dragula_1.Dragula,
                 progress_bar_1.MD_PROGRESS_BAR_DIRECTIVES,
                 button_1.MD_BUTTON_DIRECTIVES,
-                input_1.MD_INPUT_DIRECTIVES
+                input_1.MD_INPUT_DIRECTIVES,
+                ng2_bootstrap_1.AlertComponent
             ],
             viewProviders: [ng2_dragula_1.DragulaService],
             styleUrls: ['app/app.component.css'],
