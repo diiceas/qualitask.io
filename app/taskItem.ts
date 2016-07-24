@@ -6,7 +6,8 @@ export class TaskItem{
     currentTimeStr: string = "00:00:00";    
     taskLengthSeconds: number;
     lastTick: number = 0;
-    timer: NodeJS.Timer;    
+    complete: boolean;
+    timer: NodeJS.Timer;
     constructor(innerText: string, taskTimeMin: number){
         this.innerText = innerText;        
         this.taskLengthSeconds = taskTimeMin * 60;

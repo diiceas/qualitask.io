@@ -14,6 +14,7 @@
     '@angular2-material':         'node_modules/@angular2-material',
     'ng2-bootstrap':              'node_modules/ng2-bootstrap',
     'moment':                     'node_modules/moment/moment.js',
+    'angular2-fontawesome':       'node_modules/angular2-fontawesome',
   };
   // packages tells the System loader how to load when no filename and/or no extension
   var packages = {
@@ -21,7 +22,8 @@
     'rxjs':                       { defaultExtension: 'js' },
     'angular2-in-memory-web-api': { main: 'index.js', defaultExtension: 'js' },
     'ng2-dragula':                { main: 'ng2-dragula.js', defaultExtension: 'js' },
-    'ng2-bootstrap':              { main: 'ng2-bootstrap.js', defaultExtension: 'js' }
+    'ng2-bootstrap':              { main: 'ng2-bootstrap.js', defaultExtension: 'js' },
+    'angular2-fontawesome':       { defaultExtension: 'js' },
   };
   var ngPackageNames = [
     'common',

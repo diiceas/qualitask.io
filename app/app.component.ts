@@ -7,6 +7,7 @@ import { MD_INPUT_DIRECTIVES } from '@angular2-material/input'
 import { TaskItem } from './taskItem';
 import { Observable } from 'rxjs/Rx';
 import { AlertComponent } from 'ng2-bootstrap';
+import { FaComponent } from 'angular2-fontawesome/components';
 
 @Component({
   selector: 'my-app',
@@ -16,7 +17,8 @@ import { AlertComponent } from 'ng2-bootstrap';
     MD_PROGRESS_BAR_DIRECTIVES,
     MD_BUTTON_DIRECTIVES,
     MD_INPUT_DIRECTIVES,
-    AlertComponent
+    AlertComponent,
+    FaComponent
   ],
   viewProviders: [DragulaService],
   styleUrls: ['app/app.component.css'],
@@ -43,16 +45,19 @@ export class AppComponent {
     }
   }
 
-  todoItemOnClick(event, taskItem: TaskItem) {
-    event.srcElement.style.textDecoration = "line-through";
-    event.srcElement.style.background = "#E1E1E1";
+  completeCheckBoxOnClick(event, taskItem: TaskItem) {    
     taskItem.progressBarValue = 100;
+    this.toggleTaskItemCompleteStatus(taskItem);
+  }
+
+  toggleTaskItemCompleteStatus(taskItem: TaskItem){
+    taskItem.complete = !taskItem.complete;
   }
 
   urlify(text) {
     var urlRegex = /(https?:\/\/[^\s]+)/g;
     return text.replace(urlRegex, function (url) {
-      return '<a href="' + url + '">' + url + '</a>';
+      return '<a target="_blank" href="' + url + '"> link </a>';
     })
   }
 
@@ -103,10 +108,10 @@ export class AppComponent {
   }
 
   addLearningResources() {
-    this.many2.push(new TaskItem(this.urlify("https://lingvist.io - 3 min"), 3));
+    this.many2.push(new TaskItem(this.urlify("lingvist.io https://lingvist.io - 3 min"), 3));
     this.many2.push(new TaskItem(this.urlify("rest - 1 mins"), 1));
-    this.many2.push(new TaskItem(this.urlify("https://duolingo.com - 2 min"), 2));
-    this.many2.push(new TaskItem(this.urlify("test - 0.2 min"), 0.2)); //delete later
+    this.many2.push(new TaskItem(this.urlify("duolingo.com https://duolingo.com - 2 min"), 2));
+    this.many2.push(new TaskItem(this.urlify("test - 0.2 min"), 0.2)); //delete later    
   }
 
   addMeetingResources() {

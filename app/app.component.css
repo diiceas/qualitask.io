@@ -52,9 +52,9 @@
     text-align: center;
     padding: 3px;
 }
-.hidden{
+/*.hidden{
     display: none;
-}
+}*/
 .overdueHighlighted{
     background-color: #336699;
     color: white;    
@@ -64,4 +64,9 @@ md-input{
     float: left;
     margin-right: 12px;
     margin-top: -3px;
+}
+
+.taskItemComplete{
+    text-decoration: line-through;
+    /*background-color: #E1E1E1;*/
 }

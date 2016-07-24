@@ -19,7 +19,11 @@
     <script src="systemjs.config.js"></script>
     
      <!--ng-bootstrap-->
-    <script src="node_modules/ng2-bootstrap/bundles/ng2-bootstrap.min.js"></script>
+    <script src="node_modules/ng2-bootstrap/bundles/ng2-bootstrap.min.js"></script> <!--should be defined after system.srcjs!-->
+
+    <!--is used by ng2-fontawesome-->
+    <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
+
     <script>
       System.import('app').catch(function(err){ console.error(err); });
     </script>

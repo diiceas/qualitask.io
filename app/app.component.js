@@ -15,6 +15,7 @@ var button_1 = require('@angular2-material/button');
 var input_1 = require('@angular2-material/input');
 var taskItem_1 = require('./taskItem');
 var ng2_bootstrap_1 = require('ng2-bootstrap');
+var components_1 = require('angular2-fontawesome/components');
 var AppComponent = (function () {
     function AppComponent(dragulaService) {
         this.dragulaService = dragulaService;
@@ -34,15 +35,17 @@ var AppComponent = (function () {
             this.addNewTodo(newTodo);
         }
     };
-    AppComponent.prototype.todoItemOnClick = function (event, taskItem) {
-        event.srcElement.style.textDecoration = "line-through";
-        event.srcElement.style.background = "#E1E1E1";
+    AppComponent.prototype.completeCheckBoxOnClick = function (event, taskItem) {
         taskItem.progressBarValue = 100;
+        this.toggleTaskItemCompleteStatus(taskItem);
+    };
+    AppComponent.prototype.toggleTaskItemCompleteStatus = function (taskItem) {
+        taskItem.complete = !taskItem.complete;
     };
     AppComponent.prototype.urlify = function (text) {
         var urlRegex = /(https?:\/\/[^\s]+)/g;
         return text.replace(urlRegex, function (url) {
-            return '<a href="' + url + '">' + url + '</a>';
+            return '<a target="_blank" href="' + url + '"> link </a>';
         });
     };
     AppComponent.prototype.startTaskItem = function (taskItem) {
@@ -86,10 +89,10 @@ var AppComponent = (function () {
         console.log("this.audio element has been initialized");
     };
     AppComponent.prototype.addLearningResources = function () {
-        this.many2.push(new taskItem_1.TaskItem(this.urlify("https://lingvist.io - 3 min"), 3));
+        this.many2.push(new taskItem_1.TaskItem(this.urlify("lingvist.io https://lingvist.io - 3 min"), 3));
         this.many2.push(new taskItem_1.TaskItem(this.urlify("rest - 1 mins"), 1));
-        this.many2.push(new taskItem_1.TaskItem(this.urlify("https://duolingo.com - 2 min"), 2));
-        this.many2.push(new taskItem_1.TaskItem(this.urlify("test - 0.2 min"), 0.2)); //delete later
+        this.many2.push(new taskItem_1.TaskItem(this.urlify("duolingo.com https://duolingo.com - 2 min"), 2));
+        this.many2.push(new taskItem_1.TaskItem(this.urlify("test - 0.2 min"), 0.2)); //delete later    
     };
     AppComponent.prototype.addMeetingResources = function () {
         this.many2.push(new taskItem_1.TaskItem(this.urlify("meeting facilitator #1 - 3 min"), 3));
@@ -134,7 +137,8 @@ var AppComponent = (function () {
                 progress_bar_1.MD_PROGRESS_BAR_DIRECTIVES,
                 button_1.MD_BUTTON_DIRECTIVES,
                 input_1.MD_INPUT_DIRECTIVES,
-                ng2_bootstrap_1.AlertComponent
+                ng2_bootstrap_1.AlertComponent,
+                components_1.FaComponent
             ],
             viewProviders: [ng2_dragula_1.DragulaService],
             styleUrls: ['app/app.component.css'],
