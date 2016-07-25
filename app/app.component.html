@@ -9,15 +9,7 @@
             </li>
             <li><i class="fa-li fa fa-check-square"></i>Share your progress (if needed)</li>
         </ul>
-        <!--<i class="fa fa-rocket" aria-hidden="true" (click)="addNewTodo(newTodo)" ></i>-->
-        <!--<fa [name]="'rocket'" (click)="addNewTodo(newTodo);"></fa>-->
-        <alert type="info">        
-        <div>
-        <!--<fa [name]="'rocket'"></fa>-->
-        <!--<fa>
-            <i class="fa fa-rocket"></i>
-        </fa>-->
-        </div>
+        <alert type="info">
         <!-- The basic todo list template -->
         <div>
             <md-input placeholder="Task name" [(ngModel)]="newTodo" (keypress)="keyPressEventHandler($event, newTodo)"></md-input>
@@ -34,11 +26,9 @@
                 </div>
                 <div class='container grey' [dragula]='"another-bag"' [dragulaModel]='many2' *ngIf="!(many.length == 0 && many2.length == 0)">
                     <div *ngFor='let taskItem of many2'>
-                        <!--<span>-->
-                            <fa *ngIf="!taskItem.complete" style="cursor:pointer" [name]="'square-o'" (click)="completeCheckBoxOnClick($event, taskItem)"></fa>
-                            <fa *ngIf="taskItem.complete" style="cursor:pointer" [name]="'check-square-o'" (click)="completeCheckBoxOnClick($event, taskItem)"></fa>
-                            <span [class.taskItemComplete]="taskItem.complete" [innerHtml]='taskItem.innerText'></span>
-                        <!--</span>-->
+                        <fa *ngIf="!taskItem.complete" style="cursor:pointer" [name]="'square-o'" (click)="completeCheckBoxOnClick($event, taskItem)"></fa>
+                        <fa *ngIf="taskItem.complete" style="cursor:pointer" [name]="'check-square-o'" (click)="completeCheckBoxOnClick($event, taskItem)"></fa>
+                        <span [class.taskItemComplete]="taskItem.complete" [innerHtml]='taskItem.innerText'></span>
                         <md-progress-bar color="primary" mode="determinate" value="{{taskItem.complete ? 100 : taskItem.progressBarValue}}"></md-progress-bar>
                         <!--<button md-raised-button (click)="startTaskItem(taskItem)">Start</button>-->
                         <fa style="cursor:pointer" [name]="'play'" *ngIf="taskItem.timer == undefined" (click)="startTaskItem(taskItem)"></fa>

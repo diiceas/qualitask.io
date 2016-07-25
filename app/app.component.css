@@ -52,9 +52,7 @@
     text-align: center;
     padding: 3px;
 }
-/*.hidden{
-    display: none;
-}*/
+
 .overdueHighlighted{
     background-color: #336699;
     color: white;    
