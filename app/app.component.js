@@ -88,6 +88,28 @@ var AppComponent = (function () {
         this.audio.load();
         console.log("this.audio element has been initialized");
     };
+    AppComponent.prototype.addExam1tems = function () {
+        this.many2.push(new taskItem_1.TaskItem(this.urlify("exam 1 - 25 min"), 25));
+        this.many2.push(new taskItem_1.TaskItem(this.urlify("break - 5 min"), 5));
+        this.many2.push(new taskItem_1.TaskItem(this.urlify("exam 1 - 25 min"), 25));
+        this.many2.push(new taskItem_1.TaskItem(this.urlify("break - 5 min"), 5));
+        this.many2.push(new taskItem_1.TaskItem(this.urlify("exam 1 - 25 min"), 25));
+        this.many2.push(new taskItem_1.TaskItem(this.urlify("break - 10 min"), 10));
+        this.many2.push(new taskItem_1.TaskItem(this.urlify("exam 1 - 25 min"), 25));
+    };
+    AppComponent.prototype.addExam2tems = function () {
+        this.many2.push(new taskItem_1.TaskItem(this.urlify("exam 2 - 25 min"), 25));
+        this.many2.push(new taskItem_1.TaskItem(this.urlify("break - 10 min"), 10));
+        this.many2.push(new taskItem_1.TaskItem(this.urlify("exam 2 - 25 min"), 25));
+    };
+    AppComponent.prototype.addExam3tems = function () {
+        this.many2.push(new taskItem_1.TaskItem(this.urlify("exam 3 - 10 min"), 10));
+        this.many2.push(new taskItem_1.TaskItem(this.urlify("break - 5 min"), 5));
+        this.many2.push(new taskItem_1.TaskItem(this.urlify("exam 3 - 15 min"), 15));
+    };
+    AppComponent.prototype.clearAlltems = function () {
+        this.many2.length = 0;
+    };
     AppComponent.prototype.addLearningResources = function () {
         this.many2.push(new taskItem_1.TaskItem(this.urlify("lingvist.io https://lingvist.io - 3 min"), 3));
         this.many2.push(new taskItem_1.TaskItem(this.urlify("rest - 1 mins"), 1));

@@ -1,6 +1,6 @@
 <div>
     <div style="margin:auto;width:1200px;"><!-- replace later with a separate class -->
-        <h1>quicktask.io</h1>
+        <h1>QuickTask.io</h1>
         <h4>Self-management made easy!</h4>
         <ul class="fa-ul">
             <li><i class="fa-li fa fa-check-square"></i>Work smart</li>
@@ -14,8 +14,12 @@
         <div>
             <md-input placeholder="Task name" [(ngModel)]="newTodo" (keypress)="keyPressEventHandler($event, newTodo)"></md-input>
             <button md-raised-button (click)="addNewTodo(newTodo)">Add</button>
-            <button md-raised-button (click)="addLearningResources()">Add learning resources</button>
-            <button md-raised-button (click)="addMeetingResources()">Add meeting resources</button>
+            <button md-raised-button (click)="addExam1tems()">Exam 1</button>
+            <button md-raised-button (click)="addExam2tems()">Exam 2</button>
+            <button md-raised-button (click)="addExam3tems()">Exam 3</button>
+            <button md-raised-button (click)="clearAlltems()">Clear</button>
+            <!--<button md-raised-button (click)="addLearningResources()">Add learning resources</button>
+            <button md-raised-button (click)="addMeetingResources()">Add meeting resources</button>-->
         </div>
         </alert>
         <br/>
@@ -29,12 +33,15 @@
                         <fa *ngIf="!taskItem.complete" style="cursor:pointer" [name]="'square-o'" (click)="completeCheckBoxOnClick($event, taskItem)"></fa>
                         <fa *ngIf="taskItem.complete" style="cursor:pointer" [name]="'check-square-o'" (click)="completeCheckBoxOnClick($event, taskItem)"></fa>
                         <span [class.taskItemComplete]="taskItem.complete" [innerHtml]='taskItem.innerText'></span>
-                        <md-progress-bar color="primary" mode="determinate" value="{{taskItem.complete ? 100 : taskItem.progressBarValue}}"></md-progress-bar>
-                        <!--<button md-raised-button (click)="startTaskItem(taskItem)">Start</button>-->
+                        <div style="float: right">
                         <fa style="cursor:pointer" [name]="'play'" *ngIf="taskItem.timer == undefined" (click)="startTaskItem(taskItem)"></fa>
                         <fa style="cursor:pointer" [name]="'pause'" *ngIf="taskItem.timer != undefined" (click)="stopTaskItem(taskItem)"></fa>
-                        <!--<button md-raised-button (click)="stopTaskItem(taskItem)">Stop</button>-->
                         <span>{{getCurrentSecondStr(taskItem)}}</span>
+                        </div>
+                        <!--<button md-raised-button (click)="startTaskItem(taskItem)">Start</button>-->
+                        <!--<button md-raised-button (click)="stopTaskItem(taskItem)">Stop</button>-->                       
+                        
+                        <md-progress-bar color="primary" mode="determinate" value="{{taskItem.complete ? 100 : taskItem.progressBarValue}}"></md-progress-bar>
                     </div>
                 </div>
                 <div class="summary" *ngIf="many2.length != 0">
